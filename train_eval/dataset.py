@@ -43,8 +43,7 @@ class HandPointDataset(data.Dataset):
         self.volume_length = np.empty(shape=[self.total_frame_num, 1], dtype=np.float32)
         self.gt_xyz = np.empty(shape=[self.total_frame_num, self.JOINT_NUM, 3], dtype=np.float32)
         self.valid = np.empty(shape=[self.total_frame_num, 1], dtype=np.float32)
-        self.images = np.empty(shape=[self.total_frame_num, 240, 320, 3],
-                                     dtype=np.int8)
+        self.images = np.empty(shape=[self.total_frame_num, 240, 320, 3], dtype=np.int8)  # the raw depth images
 
         self.start_index = 0
         self.end_index = 0
@@ -58,6 +57,7 @@ class HandPointDataset(data.Dataset):
         else:  # test
             for i_gesture in range(self.GESTURE_NUM):
                 cur_data_dir = os.path.join(self.root_path, subject_names[self.test_index], gesture_names[i_gesture])
+                # the depth images location, temporary used for visualization, should be transferred to preprocess
                 image_path = os.path.join('../data/cvpr15_MSRAHandGestureDB', subject_names[self.test_index], gesture_names[i_gesture])
                 print("Testing: " + cur_data_dir)
                 self.__loaddata(cur_data_dir, image_path)

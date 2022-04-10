@@ -115,8 +115,7 @@ with torch.no_grad():  # newly add
 		outputs_xyz = test_data.PCA_mean.expand(estimation.data.size(0), test_data.PCA_mean.size(1))
 		outputs_xyz = torch.addmm(outputs_xyz, estimation.data, test_data.PCA_coeff)
 
-		# handjointsplot(outputs_xyz, gt_xyz, images)
-		handplot(points, outputs_xyz, gt_xyz, images)
+		handplot(points, outputs_xyz, gt_xyz, images)  # visualization
 
 		diff = torch.pow(outputs_xyz-gt_xyz, 2).view(-1,opt.JOINT_NUM,3)
 		diff_sum = torch.sum(diff,2)
