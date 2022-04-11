@@ -27,7 +27,7 @@ from dataset import HandPointDataset
 from dataset import subject_names
 from dataset import gesture_names
 from network import PointNet_Plus
-from utils import group_points, handjointsplot, handplot
+from utils import group_points, handplot
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--batchSize', type=int, default=32, help='input batch size')
